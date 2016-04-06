@@ -6,14 +6,25 @@ php:
   - hhvm
   - nightly
 
+cache:
+  directories:
+    - $HOME/.composer
+
 env:
-  - LARAVEL_VERSION="5.1.x",STABILITY=stable
-  - LARAVEL_VERSION="5.2.x",STABILITY=stable
-  - LARAVEL_VERSION="dev-master",STABILITY=dev
+    - LARAVEL_VERSION="5.1.*",COMPOSER_PREFER_LOWEST=true
+    - LARAVEL_VERSION="5.1.*",COMPOSER_PREFER_LOWEST=false
+    - LARAVEL_VERSION="5.2.*",COMPOSER_PREFER_LOWEST=true
+    - LARAVEL_VERSION="5.2.*",COMPOSER_PREFER_LOWEST=false
+    - LARAVEL_VERSION="dev-master",COMPOSER_PREFER_LOWEST=true
+    - LARAVEL_VERSION="dev-master",COMPOSER_PREFER_LOWEST=false
 
 script: phpunit --coverage-text
 
 install:
-   - composer require illuminate/http:${LARAVEL_VERSION}
-   - composer config minimum-stability ${STABILITY}
-   - composer install --dev
+    - composer self-update
+    - composer require --no-update illuminate/http:${LARAVEL_VERSION}
+    - if [[ "$LARAVEL_VERSION" = *dev* ]]; then sed -i "s/\"MIT\"/\"MIT\",\"minimum-stability\":\"dev\"/g" composer.json; fi
+    - composer update --prefer-source `if [[ $COMPOSER_PREFER_LOWEST = true ]]; then echo "--prefer-lowest --prefer-stable"; fi`
+
+notifications:
+    email: jakub.trunecek@gmail.com
