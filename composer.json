@@ -9,7 +9,6 @@
       "email": "jakub.trunecek@gmail.com"
     }
   ],
-  "minimum-stability": "stable",
   "keywords": [
     "laravel",
     "cors",
