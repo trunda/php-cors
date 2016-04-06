@@ -25,6 +25,11 @@
       "Trunda\\PhpCors\\": "src/"
     }
   },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1-dev"
+    }
+  },
   "require-dev": {
     "phpunit/phpunit": "^5.3",
     "fabpot/php-cs-fixer": "^1.11"
