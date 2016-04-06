@@ -23,13 +23,20 @@ env:
     - LARAVEL_VERSION="5.2.*"
     - LARAVEL_VERSION="dev-master"
 
-script: phpunit --coverage-text
+script: phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+  - sh -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php vendor/bin/coveralls -v; fi;'
 
 install:
+    - composer require satooshi/php-coveralls:1.0.1
     - composer self-update
     - composer require --no-update illuminate/http:${LARAVEL_VERSION}
     - if [[ "$LARAVEL_VERSION" == "dev-master" ]]; then sed -i "s/\"MIT\"/\"MIT\",\"minimum-stability\":\"dev\"/g" composer.json; fi
     - composer update --prefer-source
+
+before_script:
+  - mkdir -p build/logs
 
 notifications:
     email: jakub.trunecek@gmail.com

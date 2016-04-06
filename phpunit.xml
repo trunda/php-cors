@@ -19,11 +19,11 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory>./src</directory>
+            <directory suffix=".php">./src</directory>
+            <exclude>
+                <directory>./vendor</directory>
+                <directory>./tests</directory>
+            </exclude>
         </whitelist>
-        <blacklist>
-            <directory>./vendor</directory>
-            <directory>./tests</directory>
-        </blacklist>
     </filter>
 </phpunit>
