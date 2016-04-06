@@ -7,10 +7,13 @@ php:
   - nightly
 
 env:
-  - LARAVEL_VERSION="5.1.x"
-  - LARAVEL_VERSION="5.2.x"
-  - LARAVEL_VERSION="dev-master"
+  - LARAVEL_VERSION="5.1.x",STABILITY=stable
+  - LARAVEL_VERSION="5.2.x",STABILITY=stable
+  - LARAVEL_VERSION="dev-master",STABILITY=dev
+
+script: phpunit --coverage-text
 
 install:
    - composer require illuminate/http:${LARAVEL_VERSION}
-   - composer install
+   - composer config minimum-stability ${STABILITY}
+   - composer install --dev
