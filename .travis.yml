@@ -11,20 +11,17 @@ cache:
     - $HOME/.composer
 
 env:
-    - LARAVEL_VERSION="5.1.*",COMPOSER_PREFER_LOWEST=true
-    - LARAVEL_VERSION="5.1.*",COMPOSER_PREFER_LOWEST=false
-    - LARAVEL_VERSION="5.2.*",COMPOSER_PREFER_LOWEST=true
-    - LARAVEL_VERSION="5.2.*",COMPOSER_PREFER_LOWEST=false
-    - LARAVEL_VERSION="dev-master",COMPOSER_PREFER_LOWEST=true
-    - LARAVEL_VERSION="dev-master",COMPOSER_PREFER_LOWEST=false
+    - LARAVEL_VERSION="5.1.*"
+    - LARAVEL_VERSION="5.2.*"
+    - LARAVEL_VERSION="dev-master"
 
 script: phpunit --coverage-text
 
 install:
     - composer self-update
     - composer require --no-update illuminate/http:${LARAVEL_VERSION}
-    - if [[ "$LARAVEL_VERSION" = *dev* ]]; then sed -i "s/\"MIT\"/\"MIT\",\"minimum-stability\":\"dev\"/g" composer.json; fi
-    - composer update --prefer-source `if [[ $COMPOSER_PREFER_LOWEST = true ]]; then echo "--prefer-lowest --prefer-stable"; fi`
+    - if [[ "$LARAVEL_VERSION" == "dev-master" ]]; then sed -i "s/\"MIT\"/\"MIT\",\"minimum-stability\":\"dev\"/g" composer.json; fi
+    - composer update --prefer-source
 
 notifications:
     email: jakub.trunecek@gmail.com
