@@ -13,7 +13,7 @@ cache:
 matrix:
   exclude:
     - php: '5.5'
-        env: LARAVEL_VERSION="dev-master"
+      env: LARAVEL_VERSION="dev-master"
   allow_failures:
     - php: nightly
     - env: LARAVEL_VERSION="dev-master"
