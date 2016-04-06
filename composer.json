@@ -1,6 +1,6 @@
 {
   "name": "trunda/php-cors",
-  "description": "Provide CORS (Cross-Origin Resource Sharing) functionality. It supports Laravel framework applications",
+  "description": "PHP implementation of CORS which strictly follows specification by it's OOP model design. It supports Laravel framework applications.",
   "type": "library",
   "license": "MIT",
   "authors": [
