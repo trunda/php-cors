@@ -1,0 +1,32 @@
+{
+  "name": "trunda/php-cors",
+  "description": "Provide CORS (Cross-Origin Resource Sharing) functionality. It supports Laravel framework applications",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jakub Truneček",
+      "email": "jakub.trunecek@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "keywords": [
+    "laravel",
+    "cors",
+    "api",
+    "cross-origin"
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "illuminate/http": "5.1.x|5.2.x"
+  },
+  "autoload": {
+    "psr-4": {
+      "Trunda\\PhpCors\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.3",
+    "fabpot/php-cs-fixer": "^1.11"
+  }
+}
